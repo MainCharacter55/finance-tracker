@@ -25,35 +25,35 @@ python 口座管理簿/main.py
 ----------
 English
 ----------
-in browser search replit
-open "https://replit.com"
-create a account or login if you already have it(subscription is not needed)
+in browser search replit.
+open "https://replit.com".
+create a account or login if you already have it(subscription is not needed).
 
-in the left side bar click "Import code or design"
-click "GitHub"
-inside "GitHub Repo URL" paste "https://github.com/MainCharacter55/Account-Management-System"
-click "Import from GitHub"
+in the left side bar click "Import code or design".
+click "GitHub".
+inside "GitHub Repo URL" paste "https://github.com/MainCharacter55/Account-Management-System".
+click "Import from GitHub".
 
-in browser open new tab and search exchangerate-api
-open "https://www.exchangerate-api.com/"
-create a account or login if you already have it(subscription is not needed)
-copy "Your API Key"
+in browser open new tab and search exchangerate-api.
+open "https://www.exchangerate-api.com/".
+create a account or login if you already have it(subscription is not needed).
+copy "Your API Key".
 
-go back to replit tab
-on the top tap "Tools and files" to open new tab in REPLIT
-select "Secrets"
-click "+New configuration"
-inside Key paste "EXCHANGE_RATE_API_KEY"(past the actual text "EXCHANGE_RATE_API_KEY")
-inside Value paste "Your API Key"(actual key copied from exchangerate-api)
-click "Add congiguration"
+go back to replit tab.
+on the top tap "Tools and files" to open new tab in REPLIT.
+select "Secrets".
+click "+New configuration".
+inside Key paste "EXCHANGE_RATE_API_KEY"(past the actual text "EXCHANGE_RATE_API_KEY").
+inside Value paste "Your API Key"(actual key copied from exchangerate-api).
+click "Add congiguration".
 
-open new tab in REPLIT
-select "Shell"
-run the program
-the "Console" tab will open next to "Shell" tab
-open "Console" tab
-wait few second until you see "Please use the Workflows pane to configure your app. For more info, see: https://docs.replit.com/replit-workspace/workflows#creating-workflows"
-go back to "Shell" tab
-paste "python 口座管理簿/main.py"
+open new tab in REPLIT.
+select "Shell".
+run the program.
+the "Console" tab will open next to "Shell" tab.
+open "Console" tab.
+wait few second until you see "Please use the Workflows pane to configure your app. For more info, see: https://docs.replit.com/replit-workspace/workflows#creating-workflows".
+go back to "Shell" tab.
+paste "python 口座管理簿/main.py".
 
 set up new account on the system and have fun...
