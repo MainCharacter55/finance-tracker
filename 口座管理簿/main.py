@@ -17,7 +17,7 @@ import currency #currency.py
 
 # 日本語表示のためのフォント設定 (Replit/Linux対応)
 # 1. 'font.ttf' をプロジェクトのルートディレクトリにアップロードしてください。
-FONT_PATH = './font.ttf' 
+FONT_PATH = './font.ttf'
 
 if os.path.exists(FONT_PATH):
     # カスタムフォントを登録

@@ -3,3 +3,5 @@ __pycache__/
 db.sqlite3
 accounts.db
 .env
+balance_graph.png
+text.txt

@@ -13,8 +13,8 @@ load_dotenv()
 # load_dotenv() によってロードされた環境変数から API キーを読み取ります。
 API_KEY = os.getenv("EXCHANGE_RATE_API_KEY")
 
-if not API_KEY:
-    raise ValueError("API Key Not Found.")
+# if not API_KEY:
+#     raise ValueError("API Key Not Found.")
 
 # ベースURLには、このサービスに必要なAPIキーが含まれています。
 BASE_URL =  f"https://v6.exchangerate-api.com/v6/{API_KEY}"
