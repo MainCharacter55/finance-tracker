@@ -123,4 +123,3 @@ class DatabaseManager:
             print(f"Database error during deletion: {e}")
             return False
 # ----------------------------------------------------------------------------------------------------
-        
