@@ -11,14 +11,15 @@ from data import Account  #data.py
 from db import DatabaseManager  #db.py
 from manager import AccountManager  #manager.py
 from transaction import DepositTransaction  #transaction.py
-from decimal import Decimal  # 一貫した計算のためにDecimalをインポート
+from decimal import Decimal, InvalidOperation  # 一貫した計算のためにDecimalをインポート
 import api  #api.py
 import currency  #currency.py
 # ----------------------------------------------------------------------------------------------------
 
 # 日本語表示のためのフォント設定 (Replit/Linux対応)
 # 1. 'font.ttf' をプロジェクトのルートディレクトリにアップロードしてください。
-FONT_PATH = './口座管理簿/font.ttf'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FONT_PATH = os.path.join(BASE_DIR, 'font.ttf')
 
 if os.path.exists(FONT_PATH):
     # カスタムフォントを登録
@@ -67,7 +68,7 @@ def main():
             else:
                 print("❌ 初期アカウントの追加中にエラーが発生しました。")
                 return
-        except Exception as e:
+        except (InvalidOperation, ValueError):
             # 初期入力/設定中の例外をキャッチ。
             print(f"❌ セットアップ中の無効な初期残高です。終了します。")
             return
@@ -109,6 +110,7 @@ def main():
                     continue  # whileループの最初に戻る。
                 manager.base_currency = change_currency
                 print(f"✅ 基準通貨を {manager.base_currency} に更新しました。")
+                manager.save_data()
                 break
 
             # 合計を0に設定。
@@ -220,8 +222,9 @@ def main():
                 print(
                     f"送金先は {converted_amount.quantize(Decimal('.01'))} {destination_currency} を受け取りました。"
                 )
+                manager.save_data()
 
-            except Exception as e:
+            except (InvalidOperation, ValueError):
                 # 無効な金額入力 (Decimalに変換できないなど) の例外をキャッチ。
                 print(f"❌ 送金中にエラーが発生しました: 入力を確認してください。")
                 # print(f"詳細エラー: {e}") # デバッグ用。
@@ -238,8 +241,10 @@ def main():
                 success, message = deposit.execute(
                     manager)  # managerはAccountManagerのインスタンス。
                 print(message)
-                print("✅ 入金完了。")
-            except Exception:
+                if success:
+                    manager.save_data()
+                    print("✅ 入金完了。")
+            except (InvalidOperation, ValueError):
                 print("❌ 無効な金額です。数値を入力してください。")
 # ----------------------------------------------------------------------------------------------------
 
@@ -251,10 +256,11 @@ def main():
                 account_obj = manager.get_account(current_account)
                 # set_withdrawは利用可能な資金に基づいてTrue/Falseを返す。
                 if account_obj.set_withdraw(subject, amount):
+                    manager.save_data()
                     print("✅ 出金完了。")
                 else:
                     print("❌ 残高不足です。出金に失敗しました。")
-            except Exception:
+            except (InvalidOperation, ValueError):
                 print("❌ 無効な金額です。数値を入力してください。")
 # ----------------------------------------------------------------------------------------------------
 
@@ -373,10 +379,11 @@ def main():
                 balance = input("初期残高:")
                 currency_code = input("通貨:").upper()
                 if manager.add_account(name, balance, currency_code):
+                    manager.save_data()
                     print(f"✅ アカウント '{name}' を作成しました。")
                 else:
                     print("❌ アカウントはすでに存在します。")
-            except Exception:
+            except (InvalidOperation, ValueError):
                 print("❌ 無効な金額です。数値を入力してください。")
 # ----------------------------------------------------------------------------------------------------
 
@@ -422,7 +429,7 @@ def main():
 # ----------------------------------------------------------------------------------------------------
 
         else:
-            print("❌ 無効な入力です。0-7 を選択してください。")
+            print("❌ 無効な入力です。0-8 を選択してください。")
 
 
 # ----------------------------------------------------------------------------------------------------
